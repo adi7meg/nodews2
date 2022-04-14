@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
         required:true,
     },
     user:{
-        type: mongoose.Schema.Types.ObjectId,   //reference. a post is linked to a user. it need to refers to a users schema
+        type: mongoose.Schema.Types.ObjectId ,   //reference. a post is linked to a user. it need to refers to a users schema
         ref: 'User'
     },
 }, {
