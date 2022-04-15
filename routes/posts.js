@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 
 //now i can  acess all  the action s that would be exported in  posts_controller.js
 const postsController = require('../controllers/posts_controller');
-router.post('/create',postsController.create);
+
+//checkAuthentication is a function we created in config>passport.js
+router.post('/create',passport.checkAuthentication,postsController.create);
 
 
 module.exports = router;
