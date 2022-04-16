@@ -4,18 +4,20 @@
     <h4>Posts</h4>
 
     <!-- we display this form only to those people who have signed in -->
-    <% if (locals.user){%> 
+    <% if (locals.user){ %> 
 
     <form action="/posts/create" id="new-post-form" method="post">
-        <textarea name="content" id="" cols="30" rows="3" placeholder="Type here..."></textarea>
+        <textarea name="content" id="" cols="30" rows="3" placeholder="Type here..." required></textarea>
         <input type="submit" value="Post">
     </form>
 
-    <%}%>
+    <% } %>
     <div id="post-list-container">
         <ul>
-            <% for(post of posts){ %>
+            <% for(post of posts) { %>
                 <li>
+
+                    <!-- displaying posts -->
                     <p>
                     <%= post.content %>
                     <br>
@@ -24,6 +26,34 @@
                             <%= post.user.name %>
                         </small>
                     </p>
+                    <div class="post-comments">
+                        <!-- we display this form only to those people who have signed in -->
+                        <% if (locals.user){ %>  
+                            <form action="comments/create" method="post">
+                                <input type="text" name="content" placeholder="Type here to add comment...">
+                                 <input type="hidden" name="post" value="<%=post._id %>">
+                                 <input type="submit" value="Add Comment">
+                             </form>
+                            <% } %>
+       <!-- displaying comments -->
+                            <div class="post-comments-list">
+                                <ul id="post-comments-<%=post._id%>">
+                                    <% for(comment of post.comments) { %>
+                                        <p>
+                                            <%= comment.content %>
+                                            <br>
+                                            <small><%= comment.user.name %></small>
+                                        </p>
+                                        <% } %>
+                                </ul>
+                            </div>
+
+                     
+
+
+
+
+                    </div>
                 </li>
 
                 <%}%>
