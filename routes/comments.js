@@ -8,7 +8,7 @@ const commentsController = require('../controllers/comments_controller');
 
 //checkAuthentication is a function we created in config>passport.js
 router.post('/create',passport.checkAuthentication,commentsController.create);
-
+router.get('/destroy/:id',passport.checkAuthentication,commentsController.destroy);
 
 module.exports = router;
 

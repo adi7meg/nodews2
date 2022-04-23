@@ -9,6 +9,7 @@ const postsController = require('../controllers/posts_controller');
 //checkAuthentication is a function we created in config>passport.js
 router.post('/create',passport.checkAuthentication,postsController.create);
 
+router.get('/destroy/:id',passport.checkAuthentication,postsController.destroy);
 
 module.exports = router;
 
