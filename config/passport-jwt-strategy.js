@@ -7,7 +7,7 @@ const User = require('../models/users');
  
 
 let opts = {
-    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken,  
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),  
     secretOrKey: 'codeial',
 }
 
@@ -20,7 +20,7 @@ passport.use(new JWTStrategy(opts,function(jwtPayLoad,done){
         }else{
             return done(null,false);
         }
-    })
+    }) 
 
 }));  
 
